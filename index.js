@@ -88,6 +88,7 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
           ok: true,
           results: rows.map(rowToMemory),
         });
+        console.log(response);
       }
     });
 });
