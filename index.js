@@ -73,6 +73,7 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
         parseInt(request.params.month),
         parseInt(request.params.day),
     ];
+    console.log("HELLO!");
   
     const query = 'SELECT * FROM birthday WHERE year = ? AND month = ? AND day = ? AND is_deleted = 0 ORDER BY year DESC';
     connection.query(query, parameters, (error, rows) => {
@@ -88,7 +89,6 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
           ok: true,
           results: rows.map(rowToMemory),
         });
-        console.log(response);
       }
     });
 });
