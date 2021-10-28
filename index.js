@@ -19,6 +19,8 @@ connection.connect(error => {
   }
 });
 
+service.use("/report.html", express.static(__dirname + "/report.html"));
+
 // turn database info to plaintext
 function rowToMemory(row) {
     return {

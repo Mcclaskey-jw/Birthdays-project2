@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<header>CS347 Blog</header>
+
+<body>
+    <p>For this project I created a database of birthdays that has 6 fields being year month day for your birthday, a name, a photo feild and an age feild. 
+        To use the database I added 3 get request 2 post requests and 1 delete request. I also have a base select request for in the
+        future I will be using everything that is in the birthday database to display all the saved names and birthdays.
+    </p>
+    <ul>
+        <li>get 1: is get by name. (ie. /birthday/:name)</li>
+        <li>get 2: is a get by birthday. (ie. /birthday/:year/:month/:day) as ints</li>
+        <li>get 3: is a get by age. (ie. birthday/:age) *currently not working I also dont think i will use this in the final design.</li>
+        <li>post 1: is a just adding to the database (ie. birthday/) the relevent information needs to be stored in the url body. 
+            (ie. --data '{"year": 2013, "month": 2, "day": 3, "name": "JacobMcClaskey", "age": 99, "photo": "url or empty string"}')</li>
+        <li>post 2: is update request by id (ie. '/birthday/:id') you also need to pass the info to update with the body call.</li>
+        <li>Delete 1: this will delete any entry by id (ie. '/birthday/:id').</li>
+    </ul>
+</body>
+
+</html>
