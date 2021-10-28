@@ -8,7 +8,7 @@ service.listen(port, () => {
   console.log(`We're live on port ${port}!`);
 });
 
-const json = fs.readFileSync('credentials.json', 'utf8');
+const json = fs.readFileSync('unforget-service/credentials.json', 'utf8');
 const credentials = JSON.parse(json);
 
 const connection = mysql.createConnection(credentials);
