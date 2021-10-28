@@ -85,6 +85,7 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
         });
       } else {
         const birthday = rows.map(rowToMemory);
+        console.log(rows);
         response.json({
           ok: true,
           results: rows.map(rowToMemory),
