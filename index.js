@@ -45,7 +45,7 @@ connection.query(selectQuery, (error, rows) => {
 //getting someones birthday by name
 service.get('/birthday/:name', (request, response) => {
     const parameters = [
-      parseInt(request.params.name),
+      request.params.name,
     ];
   
     const query = 'SELECT * FROM birthday WHERE name = ? AND is_deleted = 0 ORDER BY year DESC';
