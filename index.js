@@ -73,7 +73,7 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
         parseInt(request.params.month),
         parseInt(request.params.day),
     ];
-    console.log("HELLO!");
+    //console.log("HELLO!");
   
     const query = 'SELECT * FROM birthday WHERE year = ? AND month = ? AND day = ? AND is_deleted = 0 ORDER BY year DESC';
     connection.query(query, parameters, (error, rows) => {
@@ -85,7 +85,7 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
         });
       } else {
         const birthday = rows.map(rowToMemory);
-        console.log(rows);
+        //console.log(rows);
         response.json({
           ok: true,
           results: rows.map(rowToMemory),
@@ -126,11 +126,11 @@ service.post('/birthday', (request, response) => {
         request.body.hasOwnProperty('year')) {
   
       const parameters = [
-        request.body.year,
-        request.body.month,
-        request.body.day,
+        parseIint(request.body.year),
+        parseIint(request.body.month),
+        parseIint(request.body.day),
         request.body.name,
-        request.body.age,
+        parseIint(request.body.age),
         request.body.photo,
       ];
   
@@ -162,11 +162,11 @@ service.post('/birthday', (request, response) => {
 // updating a birth day that already exists
 service.patch('/birthday/:id', (request, response) => {
     const parameters = [
-      request.body.year,
-      request.body.month,
-      request.body.day,
+      parseIint(request.body.year),
+      parseIint(request.body.month),
+      parseIint(request.body.day),
       request.body.name,
-      request.body.age,
+      parseIint(request.body.age),
       request.body.photo,
       parseInt(request.params.id),
     ];
