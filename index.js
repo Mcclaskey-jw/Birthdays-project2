@@ -1,5 +1,11 @@
 const fs = require('fs');
 const mysql = require('mysql');
+const express = require('express');
+service.use(express);
+const port = 8443;
+service.listen(port, () => {
+  console.log(`We're live on port ${port}!`);
+});
 
 const json = fs.readFileSync('credentials.json', 'utf8');
 const credentials = JSON.parse(json);
