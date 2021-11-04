@@ -118,7 +118,8 @@ service.get('/birthday/:year/:month/:day', (request, response) => {
     });
 });
 
-// getting someone by age
+// getting someone by age 
+/*
 service.get('/birthday/:age', (request, response) => {
     const parameters = [
         parseInt(request.params.age),
@@ -140,10 +141,9 @@ service.get('/birthday/:age', (request, response) => {
         });
       }
     });
-});
+});*/
 
 // getting person by id
-// getting someone by age
 service.get('/birthday/:id', (request, response) => {
   const parameters = [
       parseInt(request.params.id),
