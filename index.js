@@ -28,7 +28,8 @@ function rowToMemory(row) {
       year: row.year,
       month: row.month,
       day: row.day,
-      name: row.name,
+      first: row.first,
+      last: row.last,
       age: row.age,
       photo: row.photo,
     };
