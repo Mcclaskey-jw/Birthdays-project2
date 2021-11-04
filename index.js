@@ -219,7 +219,7 @@ service.patch('/birthday/:id', (request, response) => {
       request.body.year,
       request.body.month,
       request.body.day,
-      request.body.frist,
+      request.body.first,
       request.body.last,
       request.body.age,
       request.body.photo,
