@@ -7,13 +7,20 @@
         To use the database I added 3 get request 2 post requests and 1 delete request. I also have a base select request for in the
         future I will be using everything that is in the birthday database to display all the saved names and birthdays.
     </p>
+    <h1>UPDATE FOR AFTER PEER REVIEW:</h1>
+    <p>I took a few recommendations and added a get for all of the database that hasnt been soft deleted.
+        I got rid of the name field and added a first and last name for future use.
+        I added a get by id as recommended, but had to remove get by age because of conflict and also didnt think it was useful.
+
+    </p>
     <ul>
-        <li>get 1: is get by name. (ie. /birthday/:name)</li>
+        <li>get 1: is get by first and last. (ie. /birthday/:first/:last)</li>
         <li>get 2: is a get by birthday. (ie. /birthday/:year/:month/:day) as ints</li>
-        <li>get 3: is a get by age. (ie. birthday/:age) *currently not working I also dont think i will use this in the final design.</li>
+        <li>get 3: is the get whole list. (ie. /birthday)</li>
+        <li>get 4: is a get by id. (ie. birthday/:id)</li>
         <li>post 1: is a just adding to the database (ie. birthday/) the relevent information needs to be stored in the url body. 
-            (ie. --data '{"year": 2013, "month": 2, "day": 3, "name": "JacobMcClaskey", "age": 99, "photo": "url or empty string"}')</li>
-        <li>post 2: is update request by id (ie. '/birthday/:id') you also need to pass the info to update with the body call.</li>
+            (ie. --data '{"year": 1998, "month": 9, "day": 1, "first": "Jacob", "last": "McClaskey", "age": 23, "photo": "url or empty string"}')</li>
+        <li>patch 2: is update request by id (ie. '/birthday/:id') you also need to pass the info to update with the body call.</li>
         <li>Delete 1: this will delete any entry by id (ie. '/birthday/:id').</li>
     </ul>
 </body>
