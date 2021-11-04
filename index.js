@@ -2,14 +2,14 @@ const fs = require('fs');
 const mysql = require('mysql');
 const express = require('express');
 const service = express();
+const json = fs.readFileSync('unforget-service/credentials.json', 'utf8');
+const credentials = JSON.parse(json);
+
 //service.use(express);
 const port = 5001;
 service.listen(port, () => {
   console.log(`We're live on port ${port}!`);
 });
-
-const json = fs.readFileSync('unforget-service/credentials.json', 'utf8');
-const credentials = JSON.parse(json);
 
 const connection = mysql.createConnection(credentials);
 connection.connect(error => {
@@ -169,13 +169,13 @@ service.get('/birthday/:id', (request, response) => {
 
 //addig a new birthday
 service.post('/birthday', (request, response) => {
-    if (request.body.hasOwnProperty('year') &&
-        request.body.hasOwnProperty('month') &&
-        request.body.hasOwnProperty('day') &&
-        request.body.hasOwnProperty('first') &&
-        request.body.hasOwnProperty('last') &&
-        request.body.hasOwnProperty('age') &&
-        request.body.hasOwnProperty('photo')) {
+    if (request.body.hasOwnProperty("year") &&
+        request.body.hasOwnProperty("month") &&
+        request.body.hasOwnProperty("day") &&
+        request.body.hasOwnProperty("first") &&
+        request.body.hasOwnProperty("last") &&
+        request.body.hasOwnProperty("age") &&
+        request.body.hasOwnProperty("photo")) {
   
       const parameters = [
         request.body.year,
