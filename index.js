@@ -2,6 +2,7 @@ const fs = require('fs');
 const mysql = require('mysql');
 const express = require('express');
 const service = express();
+service.use(express.json());
 const json = fs.readFileSync('unforget-service/credentials.json', 'utf8');
 const credentials = JSON.parse(json);
 
