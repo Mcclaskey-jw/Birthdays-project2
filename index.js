@@ -141,23 +141,52 @@ service.get('/birthday/:age', (request, response) => {
     });
 });
 
+// getting person by id
+// getting someone by age
+service.get('/birthday/:id', (request, response) => {
+  const parameters = [
+      parseInt(request.params.id),
+  ];
+
+  const query = 'SELECT * FROM birthday WHERE id = ? AND is_deleted = 0 ORDER BY year DESC';
+  connection.query(query, parameters, (error, rows) => {
+    if (error) {
+      response.status(500);
+      response.json({
+        ok: false,
+        results: error.message,
+      });
+    } else {
+      const birthday = rows.map(rowToMemory);
+      response.json({
+        ok: true,
+        results: rows.map(rowToMemory),
+      });
+    }
+  });
+});
+
 //addig a new birthday
 service.post('/birthday', (request, response) => {
     if (request.body.hasOwnProperty('year') &&
         request.body.hasOwnProperty('month') &&
         request.body.hasOwnProperty('day') &&
-        request.body.hasOwnProperty('year')) {
+        request.body.hasOwnProperty('first') &&
+        request.body.hasOwnProperty('last') &&
+        request.body.hasOwnProperty('age') &&
+        request.body.hasOwnProperty('photo')) {
   
       const parameters = [
         parseIint(request.body.year),
         parseIint(request.body.month),
         parseIint(request.body.day),
-        request.body.name,
+        request.body.first,
+        request.body.last,
         parseIint(request.body.age),
         request.body.photo,
       ];
   
-      const query = 'INSERT INTO birthday(year, month, day, name, age, photo) VALUES (?, ?, ?, ?, ?, ?)';
+      const query = 'INSERT INTO birthday(year, month, day, first, last, age, photo) VALUES (?, ?, ?, ?, ?, ?, ?)';
       connection.query(query, parameters, (error, result) => {
         if (error) {
           response.status(500);
