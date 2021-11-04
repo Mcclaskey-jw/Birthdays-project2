@@ -47,7 +47,7 @@ connection.query(selectQuery, (error, rows) => {
 service.get('/birthday', (request, response) => {
 
   const query = 'SELECT * FROM birthday is_deleted = 0 ORDER BY year DESC';
-  connection.query(query, parameters, (error, rows) => {
+  connection.query(query, (error, rows) => {
     if (error) {
       response.status(500);
       response.json({
