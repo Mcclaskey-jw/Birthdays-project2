@@ -178,12 +178,12 @@ service.post('/birthday', (request, response) => {
         request.body.hasOwnProperty('photo')) {
   
       const parameters = [
-        parseIint(request.body.year),
-        parseIint(request.body.month),
-        parseIint(request.body.day),
+        request.body.year,
+        request.body.month,
+        request.body.day,
         request.body.first,
         request.body.last,
-        parseIint(request.body.age),
+        request.body.age,
         request.body.photo,
       ];
   
@@ -215,16 +215,17 @@ service.post('/birthday', (request, response) => {
 // updating a birth day that already exists
 service.patch('/birthday/:id', (request, response) => {
     const parameters = [
-      parseIint(request.body.year),
-      parseIint(request.body.month),
-      parseIint(request.body.day),
-      request.body.name,
-      parseIint(request.body.age),
+      request.body.year,
+      request.body.month,
+      request.body.day,
+      request.body.frist,
+      request.body.last,
+      request.body.age,
       request.body.photo,
       parseInt(request.params.id),
     ];
   
-    const query = 'UPDATE birthday SET year = ?, month = ?, day = ?, name = ?, age = ?, photo = ? WHERE id = ?';
+    const query = 'UPDATE birthday SET year = ?, month = ?, day = ?, first = ?, last = ?, age = ?, photo = ? WHERE id = ?';
     connection.query(query, parameters, (error, result) => {
       if (error) {
         response.status(404);
