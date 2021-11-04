@@ -34,23 +34,44 @@ function rowToMemory(row) {
     };
   }
 
-// issue queries.
-const selectQuery = 'SELECT * FROM birthday';
+/*const selectQuery = 'SELECT * FROM birthday';
 connection.query(selectQuery, (error, rows) => {
   if (error) {
     console.error(error);
   } else {
     console.log(rows);
-  }
+  }*/
+// issue queries.
+
+//get everything
+service.get('/birthday', (request, response) => {
+
+  const query = 'SELECT * FROM birthday is_deleted = 0 ORDER BY year DESC';
+  connection.query(query, parameters, (error, rows) => {
+    if (error) {
+      response.status(500);
+      response.json({
+        ok: false,
+        results: error.message,
+      });
+    } else {
+      const birthday = rows.map(rowToMemory);
+      response.json({
+        ok: true,
+        results: rows.map(rowToMemory),
+      });
+    }
+  });
 });
 
 //getting someones birthday by name
-service.get('/birthday/:name', (request, response) => {
+service.get('/birthday/:first/:last', (request, response) => {
     const parameters = [
-      request.params.name,
+      request.params.first,
+      request.params.last,
     ];
   
-    const query = 'SELECT * FROM birthday WHERE name = ? AND is_deleted = 0 ORDER BY year DESC';
+    const query = 'SELECT * FROM birthday WHERE first = ? AND last = ? AND is_deleted = 0 ORDER BY year DESC';
     connection.query(query, parameters, (error, rows) => {
       if (error) {
         response.status(500);
@@ -68,7 +89,7 @@ service.get('/birthday/:name', (request, response) => {
     });
 });
 
-// getting from someones age
+// getting from someones birthday
 service.get('/birthday/:year/:month/:day', (request, response) => {
     const parameters = [
         parseInt(request.params.year),
