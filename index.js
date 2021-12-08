@@ -6,6 +6,17 @@ service.use(express.json());
 const json = fs.readFileSync('unforget-service/credentials.json', 'utf8');
 const credentials = JSON.parse(json);
 
+service.use((request, response, next) => {
+  response.set('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+service.options('*', (request, response) => {
+  response.set('Access-Control-Allow-Headers', 'Content-Type');
+  response.set('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
+  response.sendStatus(200);
+});
+
 //service.use(express);
 const port = 5001;
 service.listen(port, () => {
